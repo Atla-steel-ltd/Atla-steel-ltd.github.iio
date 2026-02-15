@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atla Steel Ltd | Premium Iron Sheets Built for Strength</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F6F3;
+      --bg-white: #FFFFFF;
+      --fg: #1A1A1A;
+      --fg-muted: #6B6B6B;
+      --accent: #C54B2A;
+      --accent-hover: #A63D22;
+      --border: #E5E4E1;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Archivo Black', sans-serif;
+    }
+
+    /* Navigation */
+    .nav-shadow {
+      box-shadow: 0 1px 0 var(--border);
+    }
+
+    .nav-scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .reveal {
+      opacity: 0;
+    }
+
+    .reveal.active {
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .reveal-delay-1 { animation-delay: 0.1s; }
+    .reveal-delay-2 { animation-delay: 0.2s; }
+    .reveal-delay-3 { animation-delay: 0.3s; }
+    .reveal-delay-4 { animation-delay: 0.4s; }
+
+    .hero-image {
+      animation: scaleIn 1s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    /* Button styles */
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 75, 42, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--fg);
+      border: 2px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--fg);
+      background: var(--fg);
+      color: white;
+    }
+
+    /* Card styles */
+    .product-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--card-shadow);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    /* Form styles */
+    .form-select {
+      appearance: none;
+      background: var(--bg-white);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    .form-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(197, 75, 42, 0.1);
+    }
+
+    .pricing-box {
+      background: var(--bg-white);
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+
+    /* Trust icons */
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent) 0%, #E07B5C 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    /* Testimonial */
+    .testimonial-card {
+      background: var(--bg-white);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--accent);
+    }
+
+    /* Floating elements */
+    .float-element {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal {
+        opacity: 1;
+      }
+    }
+
+    /* Focus states */
+    a:focus-visible, button:focus-visible, select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Noise texture overlay */
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* Gradient orbs */
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Noise overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md nav-shadow transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#" class="font-display text-xl lg:text-2xl tracking-tight text-[var(--fg)]">
+          Atla Steel Ltd
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#home" class="text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Home</a>
+          <a href="#products" class="text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Products</a>
+          <a href="#order" class="text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Custom Order</a>
+          <a href="#about" class="text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">About</a>
+          <a href="#contact" class="text-sm font-medium text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex items-center gap-4">
+          <a href="#order" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold">
+            Get a Quote
+          </a>
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="Toggle menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-[var(--border)]">
+      <div class="px-6 py-4 space-y-3">
+        <a href="#home" class="block py-2 text-[var(--fg-muted)] hover:text-[var(--fg)]">Home</a>
+        <a href="#products" class="block py-2 text-[var(--fg-muted)] hover:text-[var(--fg)]">Products</a>
+        <a href="#order" class="block py-2 text-[var(--fg-muted)] hover:text-[var(--fg)]">Custom Order</a>
+        <a href="#about" class="block py-2 text-[var(--fg-muted)] hover:text-[var(--fg)]">About</a>
+        <a href="#contact" class="block py-2 text-[var(--fg-muted)] hover:text-[var(--fg)]">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative min-h-screen pt-20 lg:pt-0 flex items-center overflow-hidden">
+    <!-- Gradient orbs -->
+    <div class="gradient-orb w-96 h-96 bg-orange-200 top-20 -right-48"></div>
+    <div class="gradient-orb w-64 h-64 bg-amber-100 bottom-20 -left-32"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Left content -->
+        <div class="order-2 lg:order-1">
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] mb-6 reveal">
+            Premium Iron Sheets Built for Strength.
+          </h1>
+          <p class="text-lg lg:text-xl text-[var(--fg-muted)] mb-8 max-w-lg reveal reveal-delay-1">
+            High-quality roofing solutions with nationwide delivery included. Factory-direct pricing, no middlemen.
+          </p>
+          <div class="flex flex-wrap gap-4 reveal reveal-delay-2">
+            <a href="#order" class="btn-primary px-8 py-4 rounded-full text-base font-semibold inline-flex items-center gap-2">
+              Order Custom Sheets
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="tel:0788464391" class="btn-secondary px-8 py-4 rounded-full text-base font-semibold inline-flex items-center gap-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              Call 0788464391
+            </a>
+          </div>
+        </div>
+
+        <!-- Right image -->
+        <div class="order-1 lg:order-2 relative">
+          <div class="hero-image relative rounded-3xl overflow-hidden shadow-2xl">
+            <img 
+              src="https://z-cdn-media.chatglm.cn/files/d89d07af-6593-4292-ab08-140c922a3713.png?auth_key=1870881199-e0f974d1059f41bb8dfc3f99302c00ab-0-00c2563bbcf97f081ad7ade12335951f" 
+              alt="Colorful corrugated steel sheets stacked in warehouse"
+              class="w-full h-auto object-cover"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="float-element absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg p-4 hidden sm:flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm">Delivery Included</p>
+              <p class="text-xs text-[var(--fg-muted)]">Nationwide coverage</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="py-16 lg:py-24 border-t border-[var(--border)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-8 lg:gap-12">
+        <div class="text-center reveal">
+          <div class="trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13" rx="2"/>
+              <path d="M16 8h4a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-3"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Nationwide Delivery Included</h3>
+          <p class="text-[var(--fg-muted)] text-sm">Free transport to any location in Rwanda</p>
+        </div>
+        <div class="text-center reveal reveal-delay-1">
+          <div class="trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Custom Sizes and Colors</h3>
+          <p class="text-[var(--fg-muted)] text-sm">Tailored to your exact specifications</p>
+        </div>
+        <div class="text-center reveal reveal-delay-2">
+          <div class="trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Factory-Direct Quality</h3>
+          <p class="text-[var(--fg-muted)] text-sm">No middlemen, better prices guaranteed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 lg:py-24 bg-[var(--bg-white)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="font-display text-3xl lg:text-4xl xl:text-5xl mb-4 reveal">Our Products</h2>
+        <p class="text-[var(--fg-muted)] max-w-xl mx-auto reveal reveal-delay-1">Choose from our range of premium steel roofing sheets, each designed for durability and style.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Product Card 1 -->
+        <div class="product-card reveal">
+          <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-orange-100 to-amber-50 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg class="w-32 h-32 text-orange-300" viewBox="0 0 100 60">
+                <path d="M0,30 Q25,10 50,30 T100,30" stroke="currentColor" stroke-width="3" fill="none"/>
+                <path d="M0,40 Q25,20 50,40 T100,40" stroke="currentColor" stroke-width="3" fill="none"/>
+                <path d="M0,50 Q25,30 50,50 T100,50" stroke="currentColor" stroke-width="3" fill="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-xl mb-2">Corrugated Sheets / Toles Ondule</h3>
+            <p class="text-[var(--fg-muted)] text-sm mb-4">Classic wavy design perfect for rural homes and agricultural buildings. Maximum durability with minimal maintenance.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-bold">From 8,500 RWF/m</span>
+              <button class="text-[var(--accent)] font-semibold text-sm hover:underline">View Details</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="product-card reveal reveal-delay-1">
+          <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-slate-100 to-gray-50 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg class="w-32 h-32 text-slate-300" viewBox="0 0 100 60">
+                <rect x="5" y="20" width="20" height="25" fill="currentColor" rx="2"/>
+                <rect x="30" y="20" width="20" height="25" fill="currentColor" rx="2"/>
+                <rect x="55" y="20" width="20" height="25" fill="currentColor" rx="2"/>
+                <rect x="80" y="20" width="15" height="25" fill="currentColor" rx="2"/>
+              </svg>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-xl mb-2">Box Profile Sheets / Autoporta</h3>
+            <p class="text-[var(--fg-muted)] text-sm mb-4">Modern square-rib design ideal for warehouses and commercial buildings. Clean lines, professional appearance.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-bold">From 9,200 RWF/m</span>
+              <button class="text-[var(--accent)] font-semibold text-sm hover:underline">View Details</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 3 -->
+        <div class="product-card reveal reveal-delay-2">
+          <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-red-100 to-orange-50 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg class="w-32 h-32 text-red-300" viewBox="0 0 100 60">
+                <path d="M0,50 L15,30 L30,50 L45,30 L60,50 L75,30 L90,50 L100,35" stroke="currentColor" stroke-width="3" fill="none"/>
+                <path d="M0,50 L15,30 L30,50 L45,30 L60,50 L75,30 L90,50 L100,35 L100,60 L0,60 Z" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-xl mb-2">Tile Profile Sheets / Toles Touilles</h3>
+            <p class="text-[var(--fg-muted)] text-sm mb-4">Elegant tile-look design for residential homes. Combines classic aesthetics with steel durability.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-bold">From 11,500 RWF/m</span>
+              <button class="text-[var(--accent)] font-semibold text-sm hover:underline">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Order Section -->
+  <section id="order" class="py-16 lg:py-24 relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-30">
+      <svg width="100%" height="100%">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--border)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="font-display text-3xl lg:text-4xl xl:text-5xl mb-4 reveal">Build Your Custom Order</h2>
+        <p class="text-[var(--fg-muted)] max-w-xl mx-auto reveal reveal-delay-1">Select your specifications and get instant pricing with delivery included.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <!-- Order Form -->
+        <div class="bg-white rounded-3xl p-6 lg:p-10 shadow-lg border border-[var(--border)] reveal">
+          <form id="order-form" class="space-y-6">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Sheet Type</label>
+              <select id="sheet-type" class="form-select w-full">
+                <option value="corrugated">Corrugated Sheets / Toles Ondule</option>
+                <option value="box">Box Profile Sheets / Autoporta</option>
+                <option value="tile">Tile Profile Sheets / Toles Touilles</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Thickness</label>
+              <select id="thickness" class="form-select w-full">
+                <option value="0.3">0.3mm - Standard</option>
+                <option value="0.4">0.4mm - Heavy Duty</option>
+                <option value="0.5">0.5mm - Industrial</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Color</label>
+              <select id="color" class="form-select w-full">
+                <option value="red">Terracotta Red</option>
+                <option value="blue">Ocean Blue</option>
+                <option value="green">Forest Green</option>
+                <option value="orange">Sunset Orange</option>
+                <option value="gray">Slate Gray</option>
+                <option value="white">Classic White</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-2">Length (meters)</label>
+                <select id="length" class="form-select w-full">
+                  <option value="2">2m</option>
+                  <option value="3">3m</option>
+                  <option value="4">4m</option>
+                  <option value="5">5m</option>
+                  <option value="6">6m</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-2">Quantity</label>
+                <select id="quantity" class="form-select w-full">
+                  <option value="10">10 sheets</option>
+                  <option value="20">20 sheets</option>
+                  <option value="30">30 sheets</option>
+                  <option value="50">50 sheets</option>
+                  <option value="100">100 sheets</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Pricing Box -->
+        <div class="pricing-box p-6 lg:p-10 sticky top-28 reveal reveal-delay-1">
+          <div class="flex items-center justify-between mb-6 pb-6 border-b border-[var(--border)]">
+            <span class="text-[var(--fg-muted)]">Order Summary</span>
+            <span id="summary-type" class="font-semibold text-right text-sm"></span>
+          </div>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex justify-between">
+              <span class="text-[var(--fg-muted)]">Sheet Type</span>
+              <span id="detail-type" class="text-right text-sm"></span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-[var(--fg-muted)]">Thickness</span>
+              <span id="detail-thickness">0.3mm</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-[var(--fg-muted)]">Color</span>
+              <span id="detail-color">Terracotta Red</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-[var(--fg-muted)]">Length</span>
+              <span id="detail-length">2m</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-[var(--fg-muted)]">Quantity</span>
+              <span id="detail-quantity">10 sheets</span>
+            </div>
+          </div>
+
+          <div class="bg-green-50 rounded-xl p-4 mb-6">
+            <div class="flex items-center gap-2 text-green-700">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              <span class="font-medium">Nationwide Delivery Included</span>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <div id="bulk-discount" class="hidden bg-amber-50 rounded-xl p-4 mb-4">
+              <div class="flex items-center gap-2 text-amber-700">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/>
+                </svg>
+                <span class="font-medium">Bulk Discount Applied: <span id="discount-percent">5</span>%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-[var(--border)] pt-6 mb-6">
+            <div class="flex justify-between items-center">
+              <span class="text-xl font-semibold">Total Price</span>
+              <span id="total-price" class="text-3xl lg:text-4xl font-display text-[var(--accent)]">170,000 RWF</span>
+            </div>
+          </div>
+
+          <button class="btn-primary w-full py-4 rounded-full text-base font-semibold">
+            Proceed to Order
+          </button>
+
+          <p class="text-center text-xs text-[var(--fg-muted)] mt-4">All prices include nationwide delivery. No hidden transport fees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 lg:py-24 bg-[var(--bg-white)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <!-- Image -->
+        <div class="relative reveal">
+          <div class="rounded-3xl overflow-hidden shadow-xl">
+            <div class="aspect-[4/3] bg-gradient-to-br from-slate-200 to-slate-100 relative">
+              <!-- Factory illustration -->
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 300">
+                <rect x="20" y="120" width="360" height="160" fill="#E5E7EB"/>
+                <rect x="40" y="80" width="60" height="200" fill="#9CA3AF"/>
+                <rect x="120" y="100" width="80" height="180" fill="#D1D5DB"/>
+                <rect x="220" y="60" width="60" height="220" fill="#6B7280"/>
+                <rect x="300" y="140" width="80" height="140" fill="#D1D5DB"/>
+                <!-- Workers -->
+                <circle cx="80" cy="200" r="15" fill="#C54B2A"/>
+                <rect x="70" y="215" width="20" height="40" fill="#C54B2A"/>
+                <circle cx="350" cy="190" r="15" fill="#E07B5C"/>
+                <rect x="340" y="205" width="20" height="40" fill="#E07B5C"/>
+                <!-- Machines -->
+                <rect x="140" y="150" width="40" height="30" fill="#4B5563"/>
+                <rect x="310" y="160" width="50" height="40" fill="#4B5563"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Stats overlay -->
+          <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-lg p-6 hidden lg:block">
+            <div class="text-center">
+              <p class="text-4xl font-display text-[var(--accent)]">15+</p>
+              <p class="text-sm text-[var(--fg-muted)]">Years of Excellence</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="reveal reveal-delay-1">
+          <h2 class="font-display text-3xl lg:text-4xl xl:text-5xl mb-6">Building Rwanda's Future, One Sheet at a Time</h2>
+          
+          <div class="space-y-6 text-[var(--fg-muted)]">
+            <p>
+              <strong class="text-[var(--fg)]">Our Mission:</strong> To provide every Rwandan home and business with access to affordable, high-quality steel roofing that stands the test of time.
+            </p>
+            <p>
+              <strong class="text-[var(--fg)]">Our Vision:</strong> To become East Africa's most trusted steel roofing manufacturer, known for quality, reliability, and innovation.
+            </p>
+            <p>
+              <strong class="text-[var(--fg)]">Our Commitment:</strong> Every sheet that leaves our factory meets strict quality standards. We use premium-grade steel and advanced manufacturing processes to ensure durability you can count on.
+            </p>
+          </div>
+
+          <div class="mt-8 p-6 bg-[var(--bg)] rounded-2xl">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-[var(--accent)] flex items-center justify-center flex-shrink-0">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-[var(--fg)]">Located in Jabana, Gasabo, Kigali</p>
+                <p class="text-sm text-[var(--fg-muted)]">Visit our factory to see production in action and choose your colors in person.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 lg:py-24 border-t border-[var(--border)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="font-display text-3xl lg:text-4xl xl:text-5xl mb-4 reveal">What Our Customers Say</h2>
+        <p class="text-[var(--fg-muted)] reveal reveal-delay-1">Trusted by contractors, hardware shops, and homeowners across Rwanda.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-[var(--fg-muted)] mb-6">"I've been sourcing materials from Atla Steel for 5 years. Their quality is consistent, and the free delivery saves me thousands every month. My clients are always satisfied."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-semibold text-sm">JM</div>
+            <div>
+              <p class="font-semibold text-sm">Jean Mugabo</p>
+              <p class="text-xs text-[var(--fg-muted)]">Building Contractor, Kigali</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-[var(--fg-muted)] mb-6">"Running a hardware shop means I need reliable suppliers. Atla Steel never disappoints. Quick turnaround, custom sizes, and my customers love the color options."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-semibold text-sm">EN</div>
+            <div>
+              <p class="font-semibold text-sm">Esperance Niyonzima</p>
+              <p class="text-xs text-[var(--fg-muted)]">Hardware Shop Owner, Musanze</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-[var(--fg-muted)] mb-6">"Built my dream home with Atla Steel roofing. The tile profile looks amazing, and I saved significantly compared to other quotes. Delivery was seamless right to my site in Huye."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-semibold text-sm">PK</div>
+            <div>
+              <p class="font-semibold text-sm">Patrick Karekezi</p>
+              <p class="text-xs text-[var(--fg-muted)]">Homeowner, Huye</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section - NO MAP -->
+  <section id="contact" class="py-16 lg:py-24 bg-[var(--bg-white)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <h2 class="font-display text-3xl lg:text-4xl xl:text-5xl mb-6">Get in Touch</h2>
+        <p class="text-[var(--fg-muted)] mb-10">Have questions? Our team is ready to help you find the perfect roofing solution for your project.</p>
+
+        <div class="bg-[var(--bg)] rounded-3xl p-8 lg:p-10 mb-8">
+          <div class="grid sm:grid-cols-2 gap-6 text-left mb-8">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm">Address</p>
+                <p class="text-[var(--fg-muted)] text-sm">Jabana, Gasabo, Kigali</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm">Phone</p>
+                <a href="tel:0788464391" class="text-[var(--accent)] text-sm hover:underline font-medium">0788464391</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm">Email</p>
+                <a href="mailto:atlasteel@gmail.com" class="text-[var(--accent)] text-sm hover:underline font-medium">atlasteel@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-sm">Working Hours</p>
+                <p class="text-[var(--fg-muted)] text-sm">Daily: 7AM - 7PM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://wa.me/250788464391" target="_blank" class="btn-primary px-8 py-4 rounded-full text-base font-semibold inline-flex items-center justify-center gap-3">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              WhatsApp Us
+            </a>
+            <a href="tel:0788464391" class="btn-secondary px-8 py-4 rounded-full text-base font-semibold inline-flex items-center justify-center gap-3">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#2A2A2A] text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div>
+          <p class="font-display text-xl mb-2">Atla Steel Ltd</p>
+          <p class="text-gray-400 text-sm">Premium roofing solutions for Rwanda</p>
+        </div>
+        <div class="flex gap-6 text-sm text-gray-400">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <a href="#" class="hover:text-white transition-colors">Contractor Partnership</a>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-500 text-sm">&copy; 2024 Atla Steel Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize variables first
+    const basePrices = {
+      corrugated: 8500,
+      box: 9200,
+      tile: 11500
+    };
+
+    const thicknessMultipliers = {
+      '0.3': 1,
+      '0.4': 1.2,
+      '0.5': 1.45
+    };
+
+    const colorNames = {
+      red: 'Terracotta Red',
+      blue: 'Ocean Blue',
+      green: 'Forest Green',
+      orange: 'Sunset Orange',
+      gray: 'Slate Gray',
+      white: 'Classic White'
+    };
+
+    // Updated typeNames with bilingual labels
+    const typeNames = {
+      corrugated: 'Corrugated Sheets / Toles Ondule',
+      box: 'Box Profile Sheets / Autoporta',
+      tile: 'Tile Profile Sheets / Toles Touilles'
+    };
+
+    // DOM elements - get after page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.getElementById('navbar');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      // Navigation scroll effect
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('nav-scrolled');
+          navbar.classList.remove('nav-shadow');
+        } else {
+          navbar.classList.remove('nav-scrolled');
+          navbar.classList.add('nav-shadow');
+        }
+      });
+
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Scroll reveal animation
+      const revealElements = document.querySelectorAll('.reveal');
+      
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      revealElements.forEach(function(el) {
+        observer.observe(el);
+      });
+
+      // Dynamic pricing calculator
+      const sheetType = document.getElementById('sheet-type');
+      const thickness = document.getElementById('thickness');
+      const color = document.getElementById('color');
+      const length = document.getElementById('length');
+      const quantity = document.getElementById('quantity');
+
+      const summaryType = document.getElementById('summary-type');
+      const detailType = document.getElementById('detail-type');
+      const detailThickness = document.getElementById('detail-thickness');
+      const detailColor = document.getElementById('detail-color');
+      const detailLength = document.getElementById('detail-length');
+      const detailQuantity = document.getElementById('detail-quantity');
+      const totalPrice = document.getElementById('total-price');
+      const bulkDiscount = document.getElementById('bulk-discount');
+      const discountPercent = document.getElementById('discount-percent');
+
+      function updatePricing() {
+        const type = sheetType.value;
+        const thick = thickness.value;
+        const col = color.value;
+        const len = parseFloat(length.value);
+        const qty = parseInt(quantity.value);
+
+        // Update summary - using full bilingual names now
+        summaryType.textContent = typeNames[type];
+        detailType.textContent = typeNames[type];
+        detailThickness.textContent = thick + 'mm';
+        detailColor.textContent = colorNames[col];
+        detailLength.textContent = len + 'm';
+        detailQuantity.textContent = qty + ' sheets';
+
+        // Calculate price
+        let basePrice = basePrices[type];
+        let multiplier = thicknessMultipliers[thick];
+        let pricePerMeter = basePrice * multiplier;
+        let subtotal = pricePerMeter * len * qty;
+
+        // Bulk discount
+        let discount = 0;
+        if (qty >= 100) {
+          discount = 10;
+        } else if (qty >= 50) {
+          discount = 7;
+        } else if (qty >= 30) {
+          discount = 5;
+        }
+
+        if (discount > 0) {
+          bulkDiscount.classList.remove('hidden');
+          discountPercent.textContent = discount;
+        } else {
+          bulkDiscount.classList.add('hidden');
+        }
+
+        let total = subtotal * (1 - discount / 100);
+        total = Math.round(total / 1000) * 1000; // Round to nearest 1000
+
+        totalPrice.textContent = total.toLocaleString() + ' RWF';
+      }
+
+      // Add event listeners to form elements
+      [sheetType, thickness, color, length, quantity].forEach(function(el) {
+        el.addEventListener('change', updatePricing);
+      });
+
+      // Initial pricing calculation
+      updatePricing();
+    });
+  </script>
+</body>
+</html>
